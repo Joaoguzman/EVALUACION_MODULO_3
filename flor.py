@@ -42,7 +42,7 @@ def generador_flor(num):
 
 bodega_flor = Inventario("flores")
 
-mis_flores = generador_flor(100)
+mis_flores = generador_flor(1000)
 
 print("\nDatos Generados: \n")
 print(mis_flores)
