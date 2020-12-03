@@ -1,16 +1,5 @@
 import random
-
-def generador_flor(num):
-    lista = []
-    abecedario = 'abcdefghyjklmnopqrstuvwxyz'
-    tamano = 'LS'
-    for flor in range(num):
-        tipo = random.choice(abecedario)
-        size = random.choice(tamano)
-        lista.append(tipo+size)
-    return lista
-
-
+import pickle
 
 class Inventario:
     def __init__(self,nombre):
@@ -21,26 +10,61 @@ class Inventario:
         with open(self.__nombre_archivo, 'a') as file:
             file.write("Inventario Iniciado")
     
-    def agregar_elemento(self, elemento):
-        with open(self.__nombre_archivo, 'a') as file:
-            file.write("\n"+elemento)
+    def agregar_elemento(self, dic):
+        with open("traducciones.dat", "wb") as f:
+            pickle.dump(dic, f)
+
+    def cargar_datos(self, nombre):
+        try:
+            with open(nombre, "rb") as f:
+                return pickle.load(f)
+        except (OSError, IOError) as e:
+            return dict()
+    
+    def guardar_datos(self, dic, nombre):
+        with open(nombre, "wb") as f:
+            pickle.dump(dic, f)
+
+
+def generador_flor(num):
+    diccionario = {}
+    abecedario = 'abcdefghyjklmnopqrstuvwxyz'
+    tamano = 'LS'
+    for flor in range(num):
+        tipo = random.choice(abecedario)
+        size = random.choice(tamano)
+        #lista.append(tipo+size)
+        if (tipo+size) in diccionario.keys():
+            diccionario[tipo+size] +=1
+        else:
+            diccionario[tipo+size] = 1
+    return diccionario
 
 bodega_flor = Inventario("flores")
 
 mis_flores = generador_flor(100)
+
+print("\nDatos Generados: \n")
 print(mis_flores)
-for i in mis_flores:
-    bodega_flor.agregar_elemento(i)
+bodega_flor.agregar_elemento(mis_flores)
 
+##########################################################
 
-diccionario = {}
+archivo = bodega_flor.cargar_datos("traducciones.dat")
+print("\nDatos cargados para modificar: \n")
+print("Datos de entrada")
+print(archivo)
 
-for i in mis_flores:
-    if i in diccionario.keys():
-        diccionario[i] +=1
-    else:
-        diccionario[i] = 1
-
-
-for key, value in diccionario.items():
+for key, value in archivo.items():
     print(key," - ",value)
+    if key == 'cS':
+        print(key," -> ",value)
+        archivo[key] = value -1
+
+bodega_flor.guardar_datos(archivo, "traducciones.dat")
+
+###########################################
+
+archivo2 = bodega_flor.cargar_datos("traducciones.dat")
+print("\nDatos cargados despues de modificar: \n")
+print(archivo2)

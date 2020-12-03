@@ -57,13 +57,11 @@ class Armado:
 
 
 diseno1 = Armado("AL8d8r5t30")
-diseno2 = Armado("AS3a4b6k20")
+
 
 
 lista_flores = diseno1.identificar_flores()
-lista_flores2 = diseno2.identificar_flores()
+
 
 #print(lista_flores)
 diseno1.armar_ramo(lista_flores)
-print()
-diseno1.armar_ramo(lista_flores2)
