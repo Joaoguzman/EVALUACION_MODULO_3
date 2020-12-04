@@ -68,7 +68,8 @@ class ArchivoDict:
         return str(fecha.date())
 
 
-mi_bodega = ArchivoDict()
+mi_bodega = ArchivoDict("Bodega")
+mi_bodega2 = ArchivoDict("Bodega2")
 
 stock2 = mi_bodega.cargar_datos()
     

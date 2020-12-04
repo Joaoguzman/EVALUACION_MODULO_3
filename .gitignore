@@ -1,0 +1,11 @@
+<<<<<<< HEAD
+.DS_Store
+venv*
+__pycache__
+.vscode*
+=======
+venv*
+__pycache__
+.vscode*
+.DS_Store
+>>>>>>> 8db0974e02a20e15396b460f89420bb7346dc884
