@@ -7,8 +7,8 @@ from pathlib import Path
 
 
 class ArchivoDict:
-    def __init__(self):
-        self.__nombre_archivo = "Bodega_"+self.__repr__() +"_.json"
+    def __init__(self, nombre):
+        self.__nombre_archivo = nombre+self.__repr__() +"_.json"
         self.__crear_archivo()
 
     #problemas !!!!!!!!!!!!!!!!!!!!!!!!!
@@ -27,6 +27,7 @@ class ArchivoDict:
             linea = archivo.readline()
 
         json_data = json.loads(linea) # crea un diccionario
+        print("Archivo---> ",json_data)
         if clave in json_data.keys():
             json_data[clave] += valor
         else:
@@ -67,7 +68,7 @@ class ArchivoDict:
         fecha = datetime.now()
         return str(fecha.date())
 
-
+'''
 mi_bodega = ArchivoDict("Bodega")
 mi_bodega2 = ArchivoDict("Bodega2")
 
@@ -82,3 +83,4 @@ stock2 = mi_bodega.cargar_datos()
 stock2["Gaga"] = 10 
 
 mi_bodega.actualizar_datos(stock2)
+'''

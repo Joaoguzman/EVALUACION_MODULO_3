@@ -85,10 +85,10 @@ class Diseno(Archivo):
                     else: print("Error, debe elegir entre tamaño S o L!") 
             else: print("Error, debe elegir entre tipo A, B o C!")
         
-
+'''
 diseno1 = Diseno("diseno")   
 diseno_listo = diseno1.agregar_diseno()     
 print("Diseño Generado: ", diseno_listo)
 diseno1.agregar_elemento(diseno_listo)
-
+'''
                 

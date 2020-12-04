@@ -3,7 +3,7 @@ import pickle
 from pathlib import Path
 
 diccionario_flores = {"lilium":"l", "rosa":"r", "gardenia":"g", "alheli":"a", "begonia":"b", "jazmin":"j", "tulipan":"t"}
-especies_flores = ["a", "b", "j", "l", "r", "g", "f", "t"]
+especies_flores = ["a", "b", "j", "l", "r", "g", "f", "t","c"]
 tamaño_flores = ["S", "L"]
 
 class Archivo:
@@ -18,6 +18,9 @@ class Archivo:
     def agregar_elemento(self, elemento):
         with open(self.__nombre_archivo, 'a') as file:
             file.write("\n"+elemento)
+
+
+
 
 class Bodega (Archivo):
     def __init__(self, __nombre_archivo):
@@ -53,7 +56,8 @@ class Bodega (Archivo):
                 pickle.dump(self.pickle_abierto, pf)
         else:
             with(open("bodega_actualizada.dat", "wb")) as pf:
-                pickle.dump(self.bodega_sistematizada, pf) 
+                pickle.dump(self.bodega_sistematizada, pf)
+
     def buscar_flor(self, codigo_flor):
         if codigo_flor in self.bodega_sistematizada.keys():
             return print(self.bodega_sistematizada.items())
@@ -67,7 +71,8 @@ class Bodega (Archivo):
                     self.bodega_pickle.append(pickle.load(openfile))
                 except EOFError:
                     break
-            print(self.bodega_pickle)
+            return self.bodega_sistematizada
+            #print(self.bodega_pickle)
 
 #funcion generar flores (sin guardarlas: flor generada + lista de flores iniciales)
 #actualizar diccionario: te entrega diccionario tal como lo pase o con modificaciones: se guarda en archivo diccionario
@@ -75,7 +80,7 @@ class Bodega (Archivo):
 #archivo de diccionario (se sobre escribe)
 
 #FUNCION QUE SOBRE ESCRIBA EL ARCHIVO ORIGINAL 
-
+'''
 bodega1 = Bodega("bodega.txt")
 x = bodega1.recibir_flores(100)
 #bodega1.listar_bodega()
@@ -83,6 +88,7 @@ bodega1.sistematizacion_bodega()
 print(bodega1.bodega_sistematizada)
 bodega1.actualizar_archivo()
 bodega1.abrir_pickle()
+'''
 #generar lista de flores
 #transformo a diccionario
 #se guarda en dat
