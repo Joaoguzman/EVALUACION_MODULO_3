@@ -8,9 +8,8 @@ from pathlib import Path
 
 class ArchivoDict:
     def __init__(self, nombre):
-        self.__nombre_archivo = nombre +self.__repr__() +"_.json"
+        self.__nombre_archivo = nombre+self.__repr__() +"_.json"
         self.__crear_archivo()
-        
 
     #problemas !!!!!!!!!!!!!!!!!!!!!!!!!
     # reset archivo
@@ -28,6 +27,7 @@ class ArchivoDict:
             linea = archivo.readline()
 
         json_data = json.loads(linea) # crea un diccionario
+        #print("Archivo---> ",json_data)
         if clave in json_data.keys():
             json_data[clave] += valor
         else:

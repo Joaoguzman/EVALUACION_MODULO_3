@@ -1,4 +1,6 @@
 import random
+import time
+import os
 
 class Armado:
 
@@ -35,7 +37,7 @@ class Armado:
         return lista_flores  
              
     def armar_ramo(self, pedido):
-        abecedario = 'abcdefghyjklmnopqrstuvwxyz'
+        abecedario = "abcdef"
         pedir_stock = []
         pedir_stock.append(pedido[0])
         pedir_stock.append(pedido[1])
@@ -65,14 +67,21 @@ class Armado:
     def ver_disponibilidad_bodega(self, ramo_consulta,stock_bodega):
         stock_bodega_aux = stock_bodega 
         estado = 2
+        estado_aux=False
         for elem in range(0,len(ramo_consulta)-1):
             if ramo_consulta[elem+1] in stock_bodega_aux.keys():
-                if stock_bodega_aux[ramo_consulta[elem+1]] > ramo_consulta[elem]:
-                    stock_bodega_aux[ramo_consulta[elem+1]] -= ramo_consulta[elem]
+                if stock_bodega_aux[ramo_consulta[elem+1]] >= ramo_consulta[elem]:
                     estado +=2
+                    if estado == 8:
+                        estado_aux = True
         
         print("Estado: ", estado)
-        if estado == len(ramo_consulta):
+        if estado_aux:
+            for elem in range(0,len(ramo_consulta)-1):
+                if ramo_consulta[elem+1] in stock_bodega_aux.keys():
+                    if stock_bodega_aux[ramo_consulta[elem+1]] >= ramo_consulta[elem]:
+                        stock_bodega_aux[ramo_consulta[elem+1]] -= ramo_consulta[elem]
+
             print("Ramo armado")
             return stock_bodega_aux, ramo_consulta
         else:
@@ -86,36 +95,36 @@ class Armado:
             string+= str(elem)
         return string
 
-'''
 
-stock_bodega = {'xL': 14, 'qL': 28, 'uS': 21, 'yL': 44, 'gL': 19, 'aS': 22, 
-'mL': 15, 'sS': 11, 'oL': 16, 'wS': 21, 'tS': 19, 'cS': 13, 'yS': 47, 
-'pL': 15, 'wL': 22, 'lL': 17, 'bS': 20, 'rL': 9, 'rS': 15,              'dL':20,       
-'uL': 10, 'pS': 20, 'lS': 26, 'vS': 20, 'zS': 24, 'fS': 18, 'zL': 18,
-'xS': 22, 'bL':19, 'kS': 27, 'hL': 22, 'oS': 16, 'jL': 18, 'dS': 16,
-'mS': 16, 'aL': 19, 'vL': 20, 'eS': 22, 'gS': 22, 'tL': 20, 'eL': 25,
-'sL': 19, 'hS': 31, 'fL': 18, 'qS': 12, 'kL': 23, 'cL': 12, 'nS': 18,
-'jS': 16, 'nL': 23}
+'''
+stock_bodega = {'aL':1200, 'bL':1200, 'cL':1200}
 
 
 diseno1 = Armado()
-diseno1.set_diseno("AL8d8r5t30")
 
-lista_flores = diseno1.identificar_flores()
+while True:
+    diseno1.set_diseno("AL10a10b30c50")
 
-print("Flores pedido: ",lista_flores)
+    lista_flores = diseno1.identificar_flores()
 
-ramo_a_pedir = diseno1.armar_ramo(lista_flores)
+    print("Flores pedido: ",lista_flores)
 
-print("Ramo para armar: ",ramo_a_pedir)
-stock, ramo_ok = diseno1.ver_disponibilidad_bodega(ramo_a_pedir, stock_bodega)
-
-if ramo_ok:
-    print("Guardar ramo ok en archivo de salida")
-    ramo = diseno1.ramo_string(ramo_ok)
-    print(ramo)
-    print("Actualizar archivo de bodega")
-else:
-    print("Actualizar archivo de bodega")
+    ramo_a_pedir = diseno1.armar_ramo(lista_flores)
+    print(stock_bodega)
+    print("Ramo para armar: ",ramo_a_pedir)
+    stock, ramo_ok = diseno1.ver_disponibilidad_bodega(ramo_a_pedir, stock_bodega)
+    
+    if ramo_ok:
+        print("Guardar ramo ok en archivo de salida")
+        ramo = diseno1.ramo_string(ramo_ok)
+        print(ramo)
+        print("Actualizar archivo de bodega")
+        print(stock)
+        time.sleep(1)
+        os.system('cls')
+    else:
+        print("Actualizar archivo de bodega")
+        time.sleep(1)
+        os.system('cls')
 
 '''
