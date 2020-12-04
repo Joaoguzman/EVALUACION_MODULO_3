@@ -1,13 +1,21 @@
+from pathlib import Path
+
+
+
 
 class Archivo:
     def __init__(self,nombre):
         self.__nombre_archivo = nombre +".txt"
         self.__crear_archivo()
+        
     
     def __crear_archivo(self):
-        with open(self.__nombre_archivo, 'a') as file:
-            file.write("Archivo Principal: ")
-    
+        if Path(self.__nombre_archivo).is_file():
+            print ("File exist")
+        else:
+            with open(self.__nombre_archivo, 'a') as file:
+                file.write("Archivo Principal: ")
+        
     def agregar_elemento(self, elemento):
         with open(self.__nombre_archivo, 'a') as file:
             file.write("\n"+elemento)
