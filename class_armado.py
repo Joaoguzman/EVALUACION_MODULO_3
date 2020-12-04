@@ -68,7 +68,7 @@ class Armado:
             print("Ramo armado")
             return stock_bodega_aux, ramo_consulta
         else:
-            print("Aun no esta el stock! ")
+            print("Aun no está el stock! ")
             return stock_bodega, ramo_consulta
 
         
@@ -91,7 +91,7 @@ diseno1 = Armado("AL8d8r5t30")
 lista_flores = diseno1.identificar_flores()
 
 
-#print(lista_flores)
+print("Flores pedido: ",lista_flores)
 ramo_a_pedir, encabezado = diseno1.armar_ramo(lista_flores)
 print("Encabezado: ", encabezado)
 print("Ramo para armar: ",ramo_a_pedir)
@@ -106,3 +106,4 @@ stock_sorted = sorted(stock.items())
 print(type(stock_sorted))
 for elem in stock_sorted:
     print(elem)
+

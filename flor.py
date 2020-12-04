@@ -11,12 +11,12 @@ class Inventario:
             file.write("Inventario Iniciado")
     
     def agregar_elemento(self, dic):
-        with open("traducciones.dat", "wb") as f:
+        with open("flores.dat", "ab") as f:
             pickle.dump(dic, f)
 
     def cargar_datos(self, nombre):
         try:
-            with open(nombre, "rb") as f:
+            with open(nombre, "wb") as f:
                 return pickle.load(f)
         except (OSError, IOError) as e:
             return dict()
@@ -26,9 +26,8 @@ class Inventario:
             pickle.dump(dic, f)
 
 
-def generador_flor(num):
-    diccionario = {}
-    abecedario = 'abcdefghyjklmnopqrstuvwxyz'
+def generador_flor(num, diccionario):
+    abecedario = 'abcd'
     tamano = 'LS'
     for flor in range(num):
         tipo = random.choice(abecedario)
@@ -40,18 +39,22 @@ def generador_flor(num):
             diccionario[tipo+size] = 1
     return diccionario
 
+stock_bodega = {}
+
 bodega_flor = Inventario("flores")
 
-mis_flores = generador_flor(1000)
-
+mis_flores = generador_flor(1000, stock_bodega)
+print(type(mis_flores))
+x = list(mis_flores.values())
+print(sum(x))
 print("\nDatos Generados: \n")
 print(mis_flores)
 bodega_flor.agregar_elemento(mis_flores)
 
 ##########################################################
 
-archivo = bodega_flor.cargar_datos("traducciones.dat")
-print("\nDatos cargados para modificar: \n")
+archivo = bodega_flor.cargar_datos("flores.dat")
+print("\nDatos cargados para modificar --->   1: \n")
 print("Datos de entrada")
 print(archivo)
 
@@ -59,12 +62,41 @@ for key, value in archivo.items():
     print(key," - ",value)
     if key == 'cS':
         print(key," -> ",value)
-        archivo[key] = value -1
+        archivo[key] = value -1 # modificando cantidad flor
 
-bodega_flor.guardar_datos(archivo, "traducciones.dat")
+bodega_flor.guardar_datos(archivo, "flores.dat")
 
 ###########################################
 
-archivo2 = bodega_flor.cargar_datos("traducciones.dat")
+archivo2 = bodega_flor.cargar_datos("flores.dat")
+print("\nDatos cargados despues de modificar: \n")
+print("Archivo cargado: ",archivo2)
+
+mis_flores = generador_flor(1000, stock_bodega)
+
+x = list(mis_flores.values())
+print(sum(x))
+print("\nDatos Generados: \n")
+print(mis_flores)
+bodega_flor.agregar_elemento(mis_flores)
+
+##########################################################
+
+archivo = bodega_flor.cargar_datos("flores.dat")
+print("\nDatos cargados para modificar   -----> 1 + 2: \n")
+print("Datos de entrada")
+print("Archivo cargado: ",archivo)
+
+for key, value in archivo.items():
+    print(key," - ",value)
+    if key == 'cS':
+        print(key," -> ",value)
+        archivo[key] = value -1 # modificando cantidad flor
+
+bodega_flor.guardar_datos(archivo, "flores.dat")
+
+###########################################
+
+archivo2 = bodega_flor.cargar_datos("flores.dat")
 print("\nDatos cargados despues de modificar: \n")
 print(archivo2)
