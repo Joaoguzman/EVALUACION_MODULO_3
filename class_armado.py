@@ -86,7 +86,7 @@ class Armado:
             string+= str(elem)
         return string
 
-
+'''
 
 stock_bodega = {'xL': 14, 'qL': 28, 'uS': 21, 'yL': 44, 'gL': 19, 'aS': 22, 
 'mL': 15, 'sS': 11, 'oL': 16, 'wS': 21, 'tS': 19, 'cS': 13, 'yS': 47, 
@@ -118,4 +118,4 @@ if ramo_ok:
 else:
     print("Actualizar archivo de bodega")
 
-
+'''
