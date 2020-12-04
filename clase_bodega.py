@@ -69,7 +69,7 @@ class Bodega (Archivo):
 #FUNCION QUE SOBRE ESCRIBA EL ARCHIVO ORIGINAL 
 
 bodega1 = Bodega("bodega.txt")
-bodega1.recibir_flores(1)
+bodega1.recibir_flores(500)
 bodega1.listar_bodega()
 bodega1.sistematizacion_bodega()
 print(bodega1.bodega_sistematizada)
