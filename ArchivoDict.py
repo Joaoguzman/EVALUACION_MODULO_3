@@ -7,8 +7,8 @@ from pathlib import Path
 
 
 class ArchivoDict:
-    def __init__(self):
-        self.__nombre_archivo = "Bodega_"+self.__repr__() +"_.json"
+    def __init__(self,nombre):
+        self.__nombre_archivo = nombre+"_"+self.__repr__() +"_.json"
         self.__crear_archivo()
 
     #problemas !!!!!!!!!!!!!!!!!!!!!!!!!
@@ -68,7 +68,8 @@ class ArchivoDict:
         return str(fecha.date())
 
 
-mi_bodega = ArchivoDict()
+mi_bodega = ArchivoDict("Bodega")
+mi_bodega2 = ArchivoDict("Bodega2")
 
 stock2 = mi_bodega.cargar_datos()
     
