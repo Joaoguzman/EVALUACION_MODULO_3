@@ -1,6 +1,2 @@
 Archivo Principal: 
-AL10a10b10c30
-AL10a10b10c30
-BL5a5b5c15
-AL5a5b5c15
-AL5a5b5c15
+BS40a20b40c110
