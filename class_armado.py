@@ -1,5 +1,8 @@
 import random
 
+
+
+
 class Armado:
 
     def __init__(self, tipo_diseño):
@@ -34,16 +37,21 @@ class Armado:
     def armar_ramo(self, pedido):
         abecedario = 'abcdefghyjklmnopqrstuvwxyz'
         pedir_stock = []
+        pedir_stock.append(pedido[0])
+        pedir_stock.append(pedido[1])
         total = 0
         for elem in range(0,len(pedido)-1): #el ultimo elemento de la lista siempre será el total de flores
             if type(pedido[elem]) == int:
                 total += pedido[elem]
 
-        cantida_faltante = pedido[-1] - total   
-        print("Necesito: ",pedido[-1] - total," flores para terminar de diseñar el ramo")
-        pedido.remove(pedido[-1])
-        pedido.append(cantida_faltante)
-        pedido.append(random.choice(abecedario))
+        cantida_faltante = pedido[-1] - total 
+        if cantida_faltante != 0:
+            print("Necesito: ",cantida_faltante," flores para terminar de diseñar el ramo")
+            pedido.remove(pedido[-1])
+            pedido.append(cantida_faltante)
+            pedido.append(random.choice(abecedario))
+        else:
+            pedido.remove(pedido[-1])
 
         for flor in range(2,len(pedido)):
             if type(pedido[flor]) == str:
@@ -52,7 +60,7 @@ class Armado:
             else:
                 pedir_stock.append(pedido[flor]) 
         
-        return pedir_stock, pedido[:2]
+        return pedir_stock
         
     def ver_disponibilidad_bodega(self, ramo_consulta,stock_bodega):
         stock_bodega_aux = stock_bodega 
@@ -86,18 +94,18 @@ stock_bodega = {'xL': 14, 'qL': 28, 'uS': 21, 'yL': 44, 'gL': 19, 'aS': 22,
 'jS': 16, 'nL': 23}
 
 
-diseno1 = Armado("AL8d8r5t30")
+diseno1 = Armado("AL8d8r5t21")
 
 lista_flores = diseno1.identificar_flores()
 
 
 print("Flores pedido: ",lista_flores)
-ramo_a_pedir, encabezado = diseno1.armar_ramo(lista_flores)
-print("Encabezado: ", encabezado)
+ramo_a_pedir = diseno1.armar_ramo(lista_flores)
+
 print("Ramo para armar: ",ramo_a_pedir)
 stock, ramo_ok = diseno1.ver_disponibilidad_bodega(ramo_a_pedir, stock_bodega)
 
-print("ramo ok", encabezado + ramo_ok)
+print("ramo ok", ramo_ok)
 
 
 print("Stock actual")
