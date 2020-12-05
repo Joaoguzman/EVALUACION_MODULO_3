@@ -31,8 +31,8 @@ class Diseno(Archivo):
     def agregar_diseno(self):
         while True:
             try:
-                cantidad = int(input("Diseños a procesar hoy: "))
-                if cantidad > 0 and cantidad < 5:
+                n_veces = int(input("Diseños a procesar hoy: "))
+                if n_veces > 0 and n_veces < 5:
                     break
                 else:
                     continue
@@ -43,8 +43,8 @@ class Diseno(Archivo):
 
         print("*******DISEÑO DE RAMOS*******")
         contador = 1
-        while cantidad >= contador:
-            print(cantidad)
+        while n_veces >= contador:
+            print(n_veces)
             print(contador)
             mayus= (input("Indique tipo de ramo (A, B o C): "))
             if mayus in ["A", "B", "C"]:
@@ -64,7 +64,7 @@ class Diseno(Archivo):
                                     while True:
                                         variedad1= (input("Indique variedad flor: "))
                                         if variedad1.islower() == True:
-                                            tipo_de_flores = tipo_de_flores + str(num_flor1) + variedad1
+                                            tipo_de_flores = tipo_de_flores + str(num_flor1) + variedad1[0]
                                             variedad = variedad -1
                                             suma= suma + int(num_flor1)
                                             break

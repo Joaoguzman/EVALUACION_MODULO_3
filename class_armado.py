@@ -48,7 +48,6 @@ class Armado:
 
         cantida_faltante = pedido[-1] - total 
         if cantida_faltante != 0:
-            print("Necesito: ",cantida_faltante," flores para terminar de diseñar el ramo")
             pedido.remove(pedido[-1])
             pedido.append(cantida_faltante)
             pedido.append(random.choice(abecedario))
