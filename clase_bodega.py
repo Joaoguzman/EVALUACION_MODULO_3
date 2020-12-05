@@ -51,7 +51,11 @@ class Bodega ():
     def recibir_diccionario(self, diccionario):
         with(open("bodega_actualizada.dat", "wb")) as pf:
             pickle.dump(diccionario, pf)
-
+    
+    def get_diccionario(self):
+        with (open("bodega_actualizada.dat", "rb")) as pf:
+            pickle_abierto = pickle.load(pf)
+        return pickle_abierto
    
 '''
     def buscar_flor(self, codigo_flor):

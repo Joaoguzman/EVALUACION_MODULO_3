@@ -8,7 +8,7 @@ from pathlib import Path
 
 class ArchivoDict:
     def __init__(self, nombre):
-        self.__nombre_archivo = nombre+self.__repr__() +"_.json"
+        self.__nombre_archivo = nombre+"_"+self.__repr__() +"_.json"
         self.__crear_archivo()
 
     #problemas !!!!!!!!!!!!!!!!!!!!!!!!!

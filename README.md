@@ -34,13 +34,13 @@ Debe crear una interfaz por línea de comandos programada en Python3.
 * Maqueta del programa:
     * Definición de clases, herencia y funciones a implementar según el enunciado del problema:
 
-    * ` Clase Archivo `  -> Clase madre de la que heredan todas las clases que deben crear un archivo de texto donde registrar los cambios en el proceso. Esta clase contiene los siguientes atributos y métodos: 
+    * ` Clase Archivo `  -> Clase padre de la clase Diseno. Contiene metodos de agregación y eliminación de archivos. Esta clase contiene los siguientes atributos y métodos: 
       -  `__init__ ` con atributo nombre de archivo que llama a metodo que crea el archivo.
       - `agregar_elemento()` abre el archivo y agrega el elemento de entrada con 'a', y agregar con write.
       - `eliminar_elemento()` abre el archivo, lo carga en memoria, verifica si el elemento esta, borrarlo y sobreescribe el archivo con 'w'.
 
 
-    * ` Clase Diseno `  -> Hereda de clase Archivo, su fin es crear un archivo de texto con los diseños que vaya agregando el usuario mediante input para determinar qué clases de flores se necesitan para hacer la producción de los ramos.Esta clase contiene los siguientes atributos y métodos: 
+    * ` Clase Diseno `  -> Hereda de clase Archivo, su fin es controlar el input del usuario. Se definen los ramos a producir. Esta clase contiene los siguientes atributos y métodos: 
       -  `__init__ ` inicializa herencia de ClaseArchivo y define un nombre.
       - `agregar_diseno()` abre el archivo y, mediante preguntas al usuario mediante input crea los códigos correspondientes a cada diseño de ramo con el siguiente formato:
       <p align="center">
@@ -53,10 +53,9 @@ Debe crear una interfaz por línea de comandos programada en Python3.
         -  `__init__ ` inicializa la clase con un argumento nombre de archivo. Se definen los siguientes argumentos: __nombre_archivo, lista_bodega (crea lista vacía), bodega_sistematizada (crea un diccionario para almacenar el stock de flores), __crear_archivo (atributo encapsulado que se usa para crear el archivo ya que esta clase no hereda de la ClaseArchivo).
         - `def __crear_archivo` comprueba si existe el archivo bodega y en el caso de que no exista, lo crea.  
         - `def recibir_diccionario` actualiza el diccionario creado inicialmente.
-        - `def recibir_flores` 
-        - `def sistematizacion_bodega` actualiza el diccionario.
-        - `def actualizar_archivo` crea archivo y guardar diccionario en un archivo (pikle)
-        - `def buscar_flor` busca flores en el inventario y verifica si están o no.
+        - `def recibir_flores` genera flores aleatoriamente.  
+        - `def actualizar_archivo` crea archivo y guardar diccionario en un archivo .dat.
+        - `def get_diccionario` permite ver el diccionario guardado en archivo .dat.
 
      * ` Clase Armado`  -> Su rol es ejecutar la producción de los ramos. Esta clase contiene los siguientes atributos y métodos: 
         - `__init__` define qué flores necesito para armar el diseño, retorne la lista de pedido para armar el diseño.
