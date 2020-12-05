@@ -18,7 +18,8 @@ class Archivo:
         
     def agregar_elemento(self, elemento):
         with open(self.__nombre_archivo, 'a') as file:
-            file.write("\n"+elemento)
+            for elem in elemento:
+                file.write("\n"+elem)
             
 
 class Diseno(Archivo):
@@ -28,9 +29,23 @@ class Diseno(Archivo):
             
 
     def agregar_diseno(self):
+        while True:
+            try:
+                n_veces = int(input("Diseños a procesar hoy: "))
+                if n_veces > 0 and n_veces < 5:
+                    break
+                else:
+                    continue
+            except ValueError:
+                print("Error")
+        
+        lista_disenos = []
 
         print("*******DISEÑO DE RAMOS*******")
-        while True:
+        contador = 1
+        while n_veces >= contador:
+            print(n_veces)
+            print(contador)
             mayus= (input("Indique tipo de ramo (A, B o C): "))
             if mayus in ["A", "B", "C"]:
                 while True:
@@ -49,7 +64,7 @@ class Diseno(Archivo):
                                     while True:
                                         variedad1= (input("Indique variedad flor: "))
                                         if variedad1.islower() == True:
-                                            tipo_de_flores = tipo_de_flores + str(num_flor1) + variedad1
+                                            tipo_de_flores = tipo_de_flores + str(num_flor1) + variedad1[0]
                                             variedad = variedad -1
                                             suma= suma + int(num_flor1)
                                             break
@@ -61,7 +76,7 @@ class Diseno(Archivo):
                         print(tipo_de_flores)
                         diseno_listo = mayus+tamano+tipo_de_flores
                         print(diseno_listo)
-                        print(suma)
+                        #print(suma)
                         pregunta = input("Quiere agregar follaje?(s/n):  ")
                         if pregunta == "s":
                             cantidad = int(input("Cuánto quiere agregar?: "))
@@ -69,26 +84,24 @@ class Diseno(Archivo):
                             suma_str = str(suma_final)
                             diseno_listo = diseno_listo + suma_str
                             print(diseno_listo)
-                            return (diseno_listo)
-
+                            lista_disenos.append(diseno_listo)
+                            contador +=1
                         elif pregunta == "n":
                             diseno_listo= diseno_listo + str(suma)
                             print(diseno_listo)
-                            return(diseno_listo)
+                            lista_disenos.append(diseno_listo)
+                            contador += 1 
                         elif pregunta != ("n", "s"):
                             print("Error, digite s o n:")
-                                
-
-                        
-                        input("")
                         break       
                     else: print("Error, debe elegir entre tamaño S o L!") 
             else: print("Error, debe elegir entre tipo A, B o C!")
-        
 
+        return lista_disenos
+'''
 diseno1 = Diseno("diseno")   
 diseno_listo = diseno1.agregar_diseno()     
 print("Diseño Generado: ", diseno_listo)
 diseno1.agregar_elemento(diseno_listo)
-
+'''
                 
