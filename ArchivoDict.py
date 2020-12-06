@@ -34,8 +34,7 @@ class ArchivoDict:
             json_data[clave] = valor
         
         with open(self.__nombre_archivo, 'w') as archivo:
-            string_json = json.dumps(json_data) # creo un string json desde el diccionario python
-            archivo.write(string_json)
+            archivo.write(json.dumps(json_data))
     
     def eliminar_elemento(self, clave):
         with open(self.__nombre_archivo, 'r') as archivo:

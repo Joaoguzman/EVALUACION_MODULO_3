@@ -1,8 +1,5 @@
 from pathlib import Path
 
-
-
-
 class Archivo:
     def __init__(self,nombre):
         self.__nombre_archivo = nombre +".txt"
