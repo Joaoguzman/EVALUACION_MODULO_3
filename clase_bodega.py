@@ -3,7 +3,7 @@ import pickle
 from pathlib import Path
 
 diccionario_flores = {"lilium":"l", "rosa":"r", "gardenia":"g", "alheli":"a", "begonia":"b", "jazmin":"j", "tulipan":"t"}
-especies_flores = "abcdef"
+especies_flores = "abcdefghijk"
 tamaño_flores = ["S", "L"]
 
 class Bodega ():
@@ -24,17 +24,15 @@ class Bodega ():
             especie_escogida = random.choice(especies_flores)
             tamaño_escogido = random.choice(tamaño_flores)
             flor_definida = str(especie_escogida+tamaño_escogido)
-            #print(numero, flor_definida)
             self.lista_bodega.append(flor_definida)
 
 
     def actualizar_archivo(self):#crear archivo y guardar diccionario en un archivo (pikle)
         if Path("bodega_actualizada.dat").is_file():
-            #print ("File exist")
             with open("bodega_actualizada.dat", 'rb') as pf:
                 pickle_abierto = pickle.load(pf)
             
-            print(pickle_abierto)
+            #print(pickle_abierto) #muestra el estado de bodega
             for elem in self.lista_bodega:
                 if elem in pickle_abierto.keys():
                     pickle_abierto[elem] += 1
